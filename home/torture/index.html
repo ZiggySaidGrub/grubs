@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>torture pit</title>
+        <meta content="the torture pit..." name="description" />
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <style>
+            html, body {
+                margin: 0;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            body {
+                background-color: black;
+            }
+
+            #grub_container {
+                width: 100%;
+                height: 100%;
+            }
+
+            img {
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <img id="modelGrub" src="../../assets/grubs/sad.png" style="display: none;">
+        <div id="grubContainer"></div>
+        <script src="main.js"></script>
+    </body>
+</html>
