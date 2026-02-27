@@ -22,7 +22,7 @@ class Grub {
         this.direction = Math.random() < 1/2 ? 1 : -1;
 
         this.img = document.createElement("img");
-        this.img.classList.add("grub")
+        this.img.classList.add("grub");
         this.img.src = "../../assets/grubs/sad.png";
         this.img.style.position = "absolute";
         this.img.style.left = px(this.x);
@@ -34,17 +34,17 @@ class Grub {
 
     update(dt) {
         if (this.state == "falling") {
-            this.dy += 1;
-            this.y -= this.dy * (dt/16.666);
+            this.dy += 1 * (dt / 16.666);
+            this.y -= this.dy * (dt / 16.666);
 
             if (this.y < 0) this.state = "walking";
         } else if (this.state == "walking") {
             if (this.moveTimer > 0) {
-                this.x += (dt/16) * this.direction;
+                this.x += (dt / 16) * this.direction;
                 if (this.x + this.img.width > window.innerWidth || this.x < 0) {
                     this.flip(true);
                 }
-                
+
                 this.moveTimer -= dt;
                 this.moveTimer = Math.max(0, this.moveTimer);
             } else if (this.waitTimer > 0) {
@@ -53,9 +53,9 @@ class Grub {
             } else {
                 this.moveTimer = 4000 + (Math.random() * 6000);
                 this.waitTimer = 4000 + (Math.random() * 3000);
-                
+
                 if (!this.first) {
-                    if (Math.random() < 1/4) {
+                    if (Math.random() < 1 / 4) {
                         this.flip(false);
                     }
                 }
@@ -76,10 +76,10 @@ class Grub {
 
     async flip(anim) {
         this.direction = 0 - this.direction;
-        
+
         if (anim) {
             const flipTime = 75;
-    
+
             this.img.src = "../../assets/grubs/flip1.png";
             await new Promise((resolve) => setTimeout(resolve, flipTime));
             this.img.src = "../../assets/grubs/flip2.png";
@@ -106,11 +106,11 @@ function step(timestamp) {
     }
     const current = timestamp - start;
     const dt = current - last;
-    
+
     grubs.forEach((grub) => {
         grub.update(dt);
     });
-    
+
     last = current;
     requestAnimationFrame(step);
 }
@@ -119,7 +119,7 @@ requestAnimationFrame(step);
 
 // grub spawning 
 document.body.addEventListener("mousedown", (e) => {
-    new Grub(e.clientX - modelGrub.width/2, window.innerHeight - e.clientY - modelGrub.height/4) ;
+    new Grub(e.clientX - modelGrub.width / 2, window.innerHeight - e.clientY - modelGrub.height / 4);
 })
 
 const urlParams = new URLSearchParams(window.location.search);
